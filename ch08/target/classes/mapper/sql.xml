@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : 경로 -->
+<mapper namespace="mapper.sql">
+
+	<insert id="INSERT_USER">
+		INSERT INTO `Customer` SET 
+			`custid`=#{custid}, 
+			`name`=#{name}, 
+			`address`=#{address}, 
+			`phone`=#{phone};	
+	</insert>
+	
+	<select id="SELECT_USERS" resultType="kr.co.ch08.vo.UserVO">
+		SELECT * FROM `Customer`;
+	</select>
+	
+	<select id="SELECT_USER" resultType="kr.co.ch08.vo.UserVO">
+		SELECT * FROM `Customer` WHERE `custid`=#{custid};
+	</select>
+	
+	<update id="UPDATE_USER">
+		UPDATE `Customer` SET 
+			`name`=#{name}, 
+			`address`=#{address}, 
+			`phone`=#{phone} 
+			WHERE `custid`=#{custid};	
+	</update>
+	
+	<delete id="DELETE_USER">
+		DELETE FROM `Customer` WHERE `custid`=#{custid};
+	</delete>
+
+
+</mapper>

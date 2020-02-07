@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : 경로 -->
+<mapper namespace="mapper.sql_admin">
+
+	<insert id="INSERT_GOODS">
+		INSERT INTO `GOODS` SET 
+			`goods_name`=#{goods_name}, 
+			`goods_price`=#{goods_price}, 
+			`goods_sale`=#{goods_sale}, 
+			`goods_op1`=#{goods_op1}, 
+			`goods_op2`=#{goods_op2}, 
+			`goods_op3`=#{goods_op3}, 
+			`goods_stock`=#{goods_stock}, 
+			`goods_detail`=#{goods_detail}, 
+			`goods_manufacturer`=#{goods_manufacturer}, 
+			`goods_callcenter`=#{goods_callcenter}, 
+			`goods_image`=#{goods_image}, 
+			`goods_rdate`=NOW();
+	</insert>
+	
+	<select id="SELECT_GOODS_LIST" resultType="ml.enti3237.dmall.admin.vo.AdminGoodsVO">
+		SELECT * FROM `GOODS`;
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : 경로 -->
+<mapper namespace="mapper.sql">
+
+	<insert id="INSERT_MEMBER">
+<!-- 		INSERT INTO `BOARD_MEMBER` SET 
+			`custid`=#{custid}, 
+			`uid`='aaa', 
+			`pass`='1111', 
+			`name`='김김김', 
+			`nick`='김1', 
+			`email`='aaa@gmail.com', 
+			`hp`='000-1111-3256', 
+			`grade`=2, 
+			`zip`='07910', 
+			`addr1`='서울', 
+			`addr2`='중구', 
+			`rdate`=NOW(); -->
+		
+	</insert>
+
+
+</mapper>

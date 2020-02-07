@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : 경로 -->
+<mapper namespace="mapper.sql_member">
+
+	<insert id="INSERT_MEMBER">
+		INSERT INTO `MEMBER` SET 
+		    `id`=#{id}, 
+		    `pass`=#{pass}, 
+		    `name`=#{name}, 
+		    `hp`=#{hp}, 
+		    `email`=#{email}, 
+		    `birth`=#{birth}, 
+		    `grade`=#{grade}, 
+		    `point`=#{point}, 
+		    `zip`=#{zip}, 
+		    `addr_main`=#{addr_main}, 
+		    `addr_detail`=#{addr_detail}, 
+		    `regip`=#{regip}, 
+		    `rdate`=NOW();
+	</insert>
+	
+
+	<select id="SELECT_MEMBER" resultType="ml.enti3237.dmall.vo.MemberVO">
+		SELECT * FROM `MEMBER` WHERE `id`=#{id} AND `pass`=#{pass};
+	</select>
+
+	<select id="SELECT_MEMBERS" resultType="ml.enti3237.dmall.vo.MemberVO">
+		SELECT * FROM `MEMBER`;
+	</select>
+
+	
+</mapper>

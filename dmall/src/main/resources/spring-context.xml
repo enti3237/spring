@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+
+	<context:component-scan base-package="ml.enti3237.dmall"></context:component-scan>
+
+	<!-- ViewResolver 설정 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- dataSource 설정(DBCP 설정) -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<!-- mybatis로 인서트 할 때 한글이 DB테이블에서 깨지는 상황이 발생. 해결을 위해 useUnicode 추가함 -->
+		<property name="url" value="jdbc:mysql://104.199.151.233:3306/dmall?useUnicode=true&amp;characterEncoding=utf8"/>
+		<property name="username" value="root"/>
+		<property name="password" value="111qqq"/>
+	</bean>
+		
+	<!-- Spring JDBC 등록 -->	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<!-- Mybatis 설정 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis-context.xml"/>
+	</bean>	
+	
+	<!-- Mybatis-Spring 설정 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<!-- img, css, js 등 resources 폴더 적용하기 -->
+    <mvc:annotation-driven />
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+	<mvc:resources location="/resources/css/" mapping="/css/**" />
+	<mvc:resources location="/resources/img/" mapping="/img/**" />
+	<mvc:resources location="/resources/js/" mapping="/js/**" />
+	<mvc:resources location="/resources/admin/css/" mapping="/admin/css/**" />
+	<mvc:resources location="/resources/admin/img/" mapping="/admin/img/**" />
+	<mvc:resources location="/resources/admin/js/" mapping="/admin/js/**" />
+
+
+</beans>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : 경로 -->
+<mapper namespace="mapper.sql_goods">
+
+
+	
+	<select id="SELECT_GOODS" resultType="ml.enti3237.dmall.admin.vo.AdminGoodsVO">
+		SELECT * FROM `GOODS` WHERE `goods_id`=${goods_id};
+	</select>
+	
+	
+</mapper>
